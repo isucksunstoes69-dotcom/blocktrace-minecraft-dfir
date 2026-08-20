@@ -19,6 +19,7 @@ private:
     scanner::ScanResult m_result;
     std::array<char, 1024> m_rulePath{};
     std::string m_status{"Choose a readable rule file (.txt, .md, .json, .yml, .yaml)."};
+    std::string m_reportPath;
     bool m_hasResult{false};
 };
 }
