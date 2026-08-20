@@ -9,4 +9,4 @@ Run `BlockTraceRuleScanner.exe`. This native C++ Win32 executable does not requi
 
 The file may use `.txt`, `.md`, `.json`, `.yml`, `.yaml`, `.yar`, or `.yara`. You can also use **BROWSE RULE TEXT** to select it.
 
-The Javaw-inspired signature-console layout contains target queue chips, rule-source controls, scan state, input editor, and findings output. The bundled default source path appears automatically in the path box: `rules\minecraft-dfir-rules.md` beside the EXE.
+This release fixes the GUI paint loop and shows the full Javaw-inspired signature-console interface: source controls, selectable target queue, input editor, scan status, counts, and findings.
