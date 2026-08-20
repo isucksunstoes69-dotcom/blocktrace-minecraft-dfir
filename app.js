@@ -25,7 +25,26 @@ const tools=[
 ];
 const timeline=document.querySelector('#timeline'); timeline.innerHTML=phases.map(p=>`<article class="phase"><span class="phase-num">${p.n}</span><h3>${p.title}</h3><p>${p.desc}</p><a href="#toolkit">${p.link} ↗</a></article>`).join('');
 const grid=document.querySelector('#toolGrid'); const search=document.querySelector('#toolSearch'); const filter=document.querySelector('#categoryFilter');
-function renderTools(){const q=search.value.toLowerCase(), f=filter.value; grid.innerHTML=tools.filter(t=>(f==='all'||t[1]===f)&&(!q||t[0].toLowerCase().includes(q)||t[2].toLowerCase().includes(q)||t[3].toLowerCase().includes(q))).map(t=>`<article class="tool-card"><span class="tag">${t[2]}</span><h3>${t[0]}</h3><p>${t[3]}</p><div class="tool-foot"><span class="mono">REFERENCE</span><a href="${t[4]}" target="_blank" rel="noreferrer">Open release ↗</a></div></article>`).join('')||'<p class="body-copy">No tools match this filter.</p>'} search.addEventListener('input',renderTools); filter.addEventListener('change',renderTools); renderTools();
+const toolUse={
+ 'MeowResolver':'Open the release build, select report-only during an active case, and preserve the finding list before remediation.',
+ 'FilelessBypassDetection':'Run only after recording the host state; retain its console output with the case notes.',
+ 'PrefetchView':'Open the Prefetch directory, filter recent execution, then export or record unresolved-path and signature findings.',
+ 'BAMReveal':'Review BAM entries as an independent execution lane; compare the executable path and time with Prefetch.',
+ 'JournalParser':'Review relevant create, rename, and delete activity around a lead; correlate the path with other artifact sources.',
+ 'UserAssistView':'Build from source when needed, then review execution counts and timestamps as corroboration rather than proof alone.',
+ 'USBDetector':'Review connected-device history around the relevant time window and preserve identifiers and timestamps.',
+ 'StringsParser':'Choose the target file or approved dump, record the source hash, then document matched strings with surrounding context.',
+ 'MeowModAnalyzer':'Point it at the intended mods directory; review unknown, obfuscated, and suspicious results against the jar contents.',
+ 'zeezyparser / catchmacro':'Choose the versions or mods directory and review parsed jar content or macro findings with their source paths.',
+ 'MeowClientFucker':'Use after the artifact review gives a client hypothesis; capture version, result, and supporting artifacts.',
+ 'MeowDoomsdayFucker':'Choose the mode that matches the evidence: historical Prefetch traces first, then live memory only when justified.',
+ 'MeowNovowareFucker':'Run against the relevant host state and retain the result together with supporting timeline evidence.',
+ 'KernelLiveDumpTool':'Collect only when earlier evidence establishes a live-memory question; preserve collection metadata and hashes.',
+ 'Velociraptor':'Use targeted collections to gather the specific artifact lanes needed for correlation and subsequent review.',
+ 'Hayabusa':'Parse the relevant event-log export, filter to the time window, and correlate events with artifact timestamps.'
+};
+function renderTools(){const q=search.value.toLowerCase(), f=filter.value; grid.innerHTML=tools.filter(t=>(f==='all'||t[1]===f)&&(!q||t[0].toLowerCase().includes(q)||t[2].toLowerCase().includes(q)||t[3].toLowerCase().includes(q))).map(t=>`<article class="tool-card"><span class="tag">${t[2]}</span><h3>${t[0]}</h3><p>${t[3]}</p><details><summary>How to use</summary><p class="tool-use">${toolUse[t[0]]||'Review the tool documentation, record the input and output, and correlate findings with another evidence lane.'}</p></details><div class="tool-foot"><span class="mono">REFERENCE</span><a href="${t[4]}" target="_blank" rel="noreferrer">Open release ↗</a></div></article>`).join('')||'<p class="body-copy">No tools match this filter.</p>'}
+search.addEventListener('input',renderTools); filter.addEventListener('change',renderTools); renderTools();
 document.querySelectorAll('[data-save]').forEach(el=>{const k='blocktrace_'+el.dataset.save; const old=localStorage.getItem(k); if(old!==null){if(el.type==='checkbox')el.checked=old==='true';else el.value=old} el.addEventListener('input',()=>localStorage.setItem(k,el.type==='checkbox'?el.checked:el.value));});
 const clearBtn=document.querySelector('#clearBtn'); if(clearBtn){clearBtn.addEventListener('click',()=>{document.querySelectorAll('[data-save]').forEach(el=>{localStorage.removeItem('blocktrace_'+el.dataset.save); if(el.type==='checkbox')el.checked=false; else el.value='';});});} document.querySelector('#printBtn').addEventListener('click',()=>window.print());
 
