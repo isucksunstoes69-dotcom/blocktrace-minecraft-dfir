@@ -1,0 +1,8 @@
+# Local-only verification and rollback artifacts
+DIFF_FILE.txt
+MODIFIED_FILE.html
+VERIFICATION.txt
+ROLLBACK.sh
+
+# Workspace intermediates
+../work/
