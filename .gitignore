@@ -6,3 +6,4 @@ ROLLBACK.sh
 
 # Workspace intermediates
 ../work/
+.vercel
