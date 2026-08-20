@@ -11,3 +11,7 @@ ROLLBACK.sh
 # Native scanner source/build intermediates
 scanner-exe/bin/
 scanner-exe/obj/
+
+/javaw-yara-scanner/build/
+/javaw-yara-scanner/.git-javaw-reference/
+/MODIFIED_FILE.exe
